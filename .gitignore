@@ -1,6 +1,16 @@
-*zip
-Module*/
-Labs/
-AssignmentTemplate.py
-cleartest.py
-JCalhoun_Assignment_Template.py
+# Ignore Everything
+*
+
+# Except these things
+!Assignment01/
+!Assignment01/*
+!Assignment02/
+!Assignment02/*
+!Assignment03/
+!Assignment03/*
+!Assignment04/
+!Assignment04/*
+!Assignment05/
+!Assignment05/*
+!.gitignore
+!.README.md
