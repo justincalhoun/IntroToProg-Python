@@ -212,15 +212,23 @@ def DisplayToDo(todo):
 
     # Nicely Formatted Header
     print()
-    print('{:<60}'.format('ToDo List:'))
-    print('{:-<60}'.format('-'))
-    print('{0:<20}{1:<20}{2:<20}'.format('ID', 'Action', 'Priority'))
+    print('{:<79}'.format('ToDo List:'))
+    print('{:-<79}'.format('-'))
+    print('{0:<20}{1:<40}{2:<19}'.format('ID', 'Action', 'Priority'))
 
     # Loop over the ToDo list and print it.
     for index, row in enumerate(todo):
-        print('{0:<20}{1:<20}{2:<20}'.format(
+        # Check if the Action is too long.  If so, we'll truncate it.
+        if len(row['Action']) > 39:
+            # Slice the first 36 characters, add elipsis.
+            strAction = row['Action'][:36] + '...'
+        else:
+            # It's short enough to use as-is.
+            strAction = row['Action']
+        # Print out the row
+        print('{0:<20}{1:<40}{2:<19}'.format(
             index,
-            row['Action'],
+            strAction,
             row['Priority'])
         )
     print()
