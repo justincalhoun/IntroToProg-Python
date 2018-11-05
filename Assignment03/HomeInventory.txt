@@ -1,0 +1,6 @@
+Name, Price
+foo, 3.99
+bar, 5.00
+abba, 12.50
+zabba, 1.99
+fix the cheap thing, 1.00

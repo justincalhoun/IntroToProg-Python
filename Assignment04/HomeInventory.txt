@@ -1,0 +1,8 @@
+Name, Price
+Milk, 4.99
+Eggs, 3.49
+Bread, 2.99
+Dish soap, 3.99
+Cleaning Sponge, 0.99
+A book on python, 34.99
+Completed homework, 0.00

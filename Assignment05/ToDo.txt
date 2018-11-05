@@ -1,0 +1,3 @@
+Clean House, low
+Pay Bills, high
+Finish python homework, high
