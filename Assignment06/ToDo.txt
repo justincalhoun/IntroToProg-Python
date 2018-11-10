@@ -1,0 +1,5 @@
+Clean House, low
+Pay Bills, high
+Finish python homework, high
+Refactor the homework, high
+Write the homework doc, med
