@@ -31,8 +31,9 @@ def main():
     # Begin the main user loop.
     while operation:
         # Display the menu and do as the user asked.
-        # Return the operation flag and save status flag
-        operation, blSaveStatus = ToDo.Menu(lstToDo, blSaveStatus)
+        # Return the operation flag. The ToDo list and save status flag
+        # are mutable, and so will be updated via reference
+        operation = ToDo.Menu(lstToDo, blSaveStatus)
 
     # Operation has concluded, exit!
     print('Exiting!')
@@ -81,7 +82,7 @@ class ToDo(object):
         #   filename    File to save
         #   table       List of Dictionaries to parse
         #   savestatus  The blSaveStatus flag
-        # Returns:      True
+        # Returns:      Nothing
         ####################################################################
 
         # Confirm the action.
@@ -104,12 +105,14 @@ class ToDo(object):
             # Report to the user that the operation is complete.
             print('File Saved to "{0}"!'.format(filename))
             print()
-            return True
+            # Save is back in sync
+            savestatus = True
+            return
         else:
             # They changed their mind.
             print('Save Canceled.')
             print()
-            return savestatus
+            return
 
 
     @staticmethod
@@ -152,7 +155,7 @@ class ToDo(object):
         # Parameters:
         #   todo        The ToDo list
         #   savestatus  The blSaveStatus
-        # Returns:      True or False, savestatus
+        # Returns:      True or False
         ####################################################################
 
         # Define the menu
@@ -181,15 +184,16 @@ class ToDo(object):
             ToDo.Display(todo)
         elif strChoice == '2':
             # Add an item to the list
-            # Save the new list and update the save status
-            todo, savestatus = ToDo.AddDel(todo, savestatus, 'add')
+            # todo and savestatus will update as references.
+            ToDo.AddDel(todo, savestatus, 'add')
         elif strChoice == '3':
             # Del an item to the list
-            # Save the new list and update the save status
-            todo, savestatus = ToDo.AddDel(todo, savestatus, 'del')
+            # todo and save status update as references.
+            ToDo.AddDel(todo, savestatus, 'del')
         elif strChoice == '4':
             # Save Data to the file.
-            savestatus = ToDo.SaveFile('ToDo.txt', todo, savestatus)
+            # savestatus updates as reference.
+            ToDo.SaveFile('ToDo.txt', todo, savestatus)
         elif strChoice == '5':
             # Exit the program.
             # Confirm the action.
@@ -204,9 +208,9 @@ class ToDo(object):
                     # We're not in sync, attempt to save first.
                     ToDo.SaveFile('ToDo.txt', todo, savestatus)
                 # Return the exit flag
-                return False, savestatus
+                return False
         # We're not exiting, return the continue flag and save status
-        return True, savestatus
+        return True
 
     @staticmethod
     def AddDel(todo, savestatus, op):
@@ -241,8 +245,6 @@ class ToDo(object):
             todo.append(dctRow)
             print('{0}, {1} Added!'.format(strAction, strPriority))
             print()
-            # Return the list and the new blSaveStatus
-            return todo, False
 
         # Deleting an item
         elif op == 'del':
@@ -278,15 +280,12 @@ class ToDo(object):
                     del todo[int(strRemove)]
                     print('Action removed!')
                     print()
-                    # Return the list and the new blSaveStatus
-                    return todo, False
                 else:
                     print('Cancelled!  No items removed.')
                     print()
 
-        # If we fell through the conditional, nothing changed.
-        # Return the unaltered list and save status
-        return todo, savestatus
+        # This method is done, return.
+        return
 
     @staticmethod
     def ValidateInput(question, answers):
