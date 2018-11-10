@@ -48,6 +48,7 @@ class ToDo(object):
         # Parameters:
         #   filename    File to save
         # Returns:      List, potentially of Dictionaries
+        #               True or False for save status flag
         ################################################################
 
         # Create an empty List
@@ -280,6 +281,8 @@ class ToDo(object):
                     del todo[int(strRemove)]
                     print('Action removed!')
                     print()
+                    # Update the save status via reference
+                    savestatus = False
                 else:
                     print('Cancelled!  No items removed.')
                     print()
@@ -314,3 +317,4 @@ class ToDo(object):
 # Run main function
 if __name__ == '__main__':
     main()
+
