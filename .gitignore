@@ -14,5 +14,11 @@
 !Assignment05/*
 !Assignment06/
 !Assignment06/*
+!Assignment07/
+!Assignment07/*.tgz
+!Assignment07/*.txt
+!Assignment07/*.docx
+!Assignment07/*.py
+!Assignment07/*.md
 !.gitignore
 !.README.md
