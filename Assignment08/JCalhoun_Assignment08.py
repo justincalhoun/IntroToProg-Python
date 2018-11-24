@@ -126,8 +126,8 @@ def main():
         ReadAllFileData(objFile, 'Here is the saved data:')
     except FileNotFoundError as e:
         print('Error: ' + str(e) + '\nPlease check the file name')
-    #except Exception as e:
-    #    print('Error: ' + str(e))
+    except Exception as e:
+        print('Error: ' + str(e))
     finally:
         # We're done, close the file
         if(objFile != None): objFile.close()
