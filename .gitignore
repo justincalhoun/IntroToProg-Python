@@ -20,5 +20,7 @@
 !Assignment07/*.docx
 !Assignment07/*.py
 !Assignment07/*.md
+!Assignment08/
+!Assignment08/*
 !.gitignore
 !.README.md
