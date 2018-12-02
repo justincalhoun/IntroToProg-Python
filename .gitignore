@@ -22,5 +22,8 @@
 !Assignment07/*.md
 !Assignment08/
 !Assignment08/*
+!Assignment09/
+!Assignment09/*.py
+!Assignment09/testdata.txt
 !.gitignore
 !.README.md
