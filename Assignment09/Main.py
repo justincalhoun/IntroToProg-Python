@@ -90,6 +90,8 @@ def main():
                           ' [V]iew current data\n' \
                           ' e[X]it and save\n' \
                           'Selection? ')
+        print()
+
         if strAction.lower() == 'x':
             print('Saving data to "SavedData.txt"...')
             # Add the current customer data to myFile
@@ -122,12 +124,15 @@ def main():
                 # Add the customer to myCustomers
                 myCustomers.AddCustomer(newCustomer)
             else:
-                print('Operation cancelled!')
+                print('Operation cancelled!\n')
 
         elif strAction.lower() == 'v':
             print('Current customers:')
             print('{:-<74}'.format('-'))
             DisplayCustomers(myCustomers.ToString())
+
+        else:
+            print("I'm sorry, I didn't understand that selection.\n")
 
 
 # Run main function
