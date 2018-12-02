@@ -13,6 +13,54 @@
 # Imports here
 import Customers, DataProcessor
 
+# Display Helper Function
+def DisplayCustomers(CustomersString):
+    """
+    Function to handle nicely formatted output of current customer data
+
+    :param CustomersString: String output from CustomerList object
+    """
+    # Turn the string into a list of rows to act upon
+    for row in CustomersString.split('\n'):
+        # split the row into individual items
+        try:
+            uid, lname, fname, phone, cc = row.split(',')
+        except ValueError:
+            # For some reason, this row is broken.  Just print blanks.
+            uid = ''
+            lname = ''
+            fname = ''
+            phone = ''
+            cc = ''
+
+        # Nicely formatted output
+        print('{0:<10}{1:<15}{2:<15}{3:<15}{4:<20}'.format(
+            NameSlicer(uid, 10),
+            NameSlicer(lname, 15),
+            NameSlicer(fname, 15),
+            NameSlicer(phone, 15),
+            NameSlicer(cc, 20)))
+
+
+# Item Slicer for display
+def NameSlicer(name, size, suffix='... '):
+    """
+    Truncates a string
+
+    :param name: String to be sliced
+    :param size: Length to fit it in
+    :param suffix: Character(s) to append (default: '... ')
+
+    :returns: String of the appropriate length
+    """
+    # Is the string too long?
+    if len(name) > size:
+        # Slice the string to size - length of the suffix character(s)
+        # Append the suffix character(s)
+        name = name[:(size-len(suffix))] + suffix
+    return name
+
+
 # Main Function
 def main():
     #--Setup--
@@ -68,7 +116,7 @@ def main():
 
             # Confirm the new record
             print('\nAbout to add the following customer:')
-            print(newCustomer.ToString())
+            DisplayCustomers(newCustomer.ToString())
             strConfirmation = input('Is this all correct (y/n)? ')
             if strConfirmation.lower() == 'y':
                 # Add the customer to myCustomers
@@ -78,7 +126,8 @@ def main():
 
         elif strAction.lower() == 'v':
             print('Current customers:')
-            print(myCustomers.ToString())
+            print('{:-<74}'.format('-'))
+            DisplayCustomers(myCustomers.ToString())
 
 
 # Run main function
